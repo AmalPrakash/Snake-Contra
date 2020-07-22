@@ -1,5 +1,5 @@
 import random
-form config import config
+from config import config
 # class is used to represent apple as a combined object of X and Y coordinates..
 
 
