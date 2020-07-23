@@ -18,11 +18,11 @@ class Game():
 
     def drawGrid(self):
         for x in range(0, Config.WINDOW_WIDTH, Config.CELLSIZE):  # draw vertical lines
-            pygame.draw.line(self.screen, Config.DARKGRAY,
+            pygame.draw.line(self.screen, Config.BG_COLOR,
                              (x, 0), (x, Config.WINDOW_HEIGHT))
 
         for y in range(0, Config.WINDOW_HEIGHT, Config.CELLSIZE):  # draw horizontal lines
-            pygame.draw.line(self.screen, Config.DARKGRAY,
+            pygame.draw.line(self.screen, Config.BG_COLOR,
                              (0, y), (Config.WINDOW_WIDTH, y))
 
     def drawSnake(self):
@@ -94,8 +94,6 @@ class Game():
 
         return True
 
-
-
     def isGameOver(self):
         if (self.snake.sCoords[self.snake.HEAD]['x'] == -1 or
             self.snake.sCoords[self.snake.HEAD]['x'] == Config.CELLWIDTH or
@@ -108,13 +106,14 @@ class Game():
                 return self.resetGame()
 
     def displayGameOver(self):
-        gameOverFont = pygame.font.Font('freesansbold.ttf', 150)
-        gameSurf = gameOverFont.render('Game', True, Config.WHITE)
-        overSurf = gameOverFont.render('Over', True, Config.WHITE)
+        gameFont = pygame.font.SysFont('bradleyhanditc', 40)
+        overFont = pygame.font.SysFont('bradleyhanditc', 160)
+        gameSurf = gameFont.render('Game', True, Config.WHITE)
+        overSurf = overFont.render('Over', True, Config.WHITE)
         gameRect = gameSurf.get_rect()
         overRect = overSurf.get_rect()
-        gameRect.midtop = (Config.WINDOW_WIDTH / 2, 10)
-        overRect.midtop = (Config.WINDOW_WIDTH / 2, gameRect.height + 10 + 25)
+        gameRect.midtop = (Config.WINDOW_WIDTH / 2, 120)
+        overRect.midtop = (Config.WINDOW_WIDTH / 2, gameRect.height + 60)
         self.screen.blit(gameSurf, gameRect)
         self.screen.blit(overSurf, overRect)
         pygame.display.update()
@@ -127,28 +126,20 @@ class Game():
                 return
 
     def showStartScreen(self):
-        titleFont = pygame.font.Font('freesansbold.ttf', 75)
-        titleSurf1 = titleFont.render(
+        titleFont = pygame.font.SysFont(
+            'bradleyhanditc', 75)
+        titleSurf = titleFont.render(
             'SNAKE!', True, Config.WHITE, Config.BG_COLOR)
-        titleSurf2 = titleFont.render('SNAKE!', True, Config.GREEN)
-        degrees1 = 0
-        degrees2 = 0
 
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     return
             self.screen.fill(Config.BG_COLOR)
-            rotatedSurf1 = pygame.transform.rotate(titleSurf1, degrees1)
-            rotatedRect1 = rotatedSurf1.get_rect()
-            rotatedRect1.center = (Config.WINDOW_WIDTH / 2,
-                                   Config.WINDOW_HEIGHT / 2)
-            self.screen.blit(rotatedSurf1, rotatedRect1)
-
-            rotatedSurf2 = pygame.transform.rotate(titleSurf2, degrees2)
-            rotatedRect2 = rotatedSurf2.get_rect()
-            rotatedRect2.center = (Config.WINDOW_WIDTH / 2,
-                                   Config.WINDOW_HEIGHT / 2)
+            Rect = titleSurf.get_rect()
+            Rect.center = (Config.WINDOW_WIDTH / 2,
+                           Config.WINDOW_HEIGHT / 2)
+            self.screen.blit(titleSurf, Rect)
             pygame.display.update()
             self.clock.tick(Config.MENU_FPS)
 
