@@ -126,10 +126,23 @@ class Game():
                 return
 
     def showStartScreen(self):
+
         titleFont = pygame.font.SysFont(
             'bradleyhanditc', 75)
+        instSurf1 = titleFont.render('UPs are DOWNs', True, Config.WHITE)
+        instSurf2 = titleFont.render('LEFTs are RIGHTs', True, Config.WHITE)
+        instRect1 = instSurf1.get_rect()
+        instRect2 = instSurf2.get_rect()
+        instRect1.midtop = (Config.WINDOW_WIDTH / 2, 100)
+        instRect2.midtop = (Config.WINDOW_WIDTH / 2, instRect1.height + 100)
+        self.screen.blit(instSurf1, instRect1)
+        self.screen.blit(instSurf2, instRect2)
+        pygame.display.update()
+        pygame.time.wait(2000)
+
+
         titleSurf = titleFont.render(
-            'SNAKE!', True, Config.WHITE, Config.BG_COLOR)
+            'SNAKE CONTRA!', True, Config.WHITE, Config.BG_COLOR)
 
         while True:
             for event in pygame.event.get():
