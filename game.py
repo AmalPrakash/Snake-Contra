@@ -129,7 +129,7 @@ class Game():
         pressKeySurf = self.BASICFONT.render(
             'An AmalPrakash adaptation of the classic Snake Xenzia.', True, Config.DARKGRAY2)
         pressKeyRect = pressKeySurf.get_rect()
-        pressKeyRect.topleft = (Config.WINDOW_WIDTH - 500,
+        pressKeyRect.topleft = (Config.WINDOW_WIDTH - 600,
                                 Config.WINDOW_HEIGHT - 30)
         self.screen.blit(pressKeySurf, pressKeyRect)
 
