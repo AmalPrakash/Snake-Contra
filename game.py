@@ -125,6 +125,22 @@ class Game():
                 pygame.event.get()  # clear event queue
                 return
 
+    def creditshow(self):
+        pressKeySurf = self.BASICFONT.render(
+            'An AmalPrakash adaptation of the classic Snake Xenzia.', True, Config.DARKGRAY2)
+        pressKeyRect = pressKeySurf.get_rect()
+        pressKeyRect.topleft = (Config.WINDOW_WIDTH - 500,
+                                Config.WINDOW_HEIGHT - 30)
+        self.screen.blit(pressKeySurf, pressKeyRect)
+
+    def drawPressKeyMsg(self):
+        pressKeySurf = self.BASICFONT.render(
+            'Press any key to start', True, Config.DARKGRAY)
+        pressKeyRect = pressKeySurf.get_rect()
+        pressKeyRect.topleft = (Config.WINDOW_WIDTH - 400,
+                                Config.WINDOW_HEIGHT - 30)
+        self.screen.blit(pressKeySurf, pressKeyRect)
+
     def showStartScreen(self):
 
         titleFont = pygame.font.SysFont(
@@ -137,12 +153,14 @@ class Game():
         instRect2.midtop = (Config.WINDOW_WIDTH / 2, instRect1.height + 100)
         self.screen.blit(instSurf1, instRect1)
         self.screen.blit(instSurf2, instRect2)
-        pygame.display.update()
-        pygame.time.wait(2000)
 
+        self.creditshow()
+        pygame.display.update()
+        pygame.time.wait(2845)
 
         titleSurf = titleFont.render(
             'SNAKE CONTRA!', True, Config.WHITE, Config.BG_COLOR)
+        
 
         while True:
             for event in pygame.event.get():
@@ -153,6 +171,7 @@ class Game():
             Rect.center = (Config.WINDOW_WIDTH / 2,
                            Config.WINDOW_HEIGHT / 2)
             self.screen.blit(titleSurf, Rect)
+            self.drawPressKeyMsg()
             pygame.display.update()
             self.clock.tick(Config.MENU_FPS)
 

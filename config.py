@@ -16,6 +16,7 @@ class Config():
     GREEN = (0, 255, 0)
     DARKGREEN = (0, 155, 0)
     DARKGRAY = (40, 40, 40)
+    DARKGRAY2 = (150,150,150)
     BG_COLOR = BLACK
     
     
