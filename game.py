@@ -161,7 +161,7 @@ class Game():
         titleSurf = titleFont.render(
             'SNAKE CONTRA!', True, Config.WHITE, Config.BG_COLOR)
         
-
+            #scene contra
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
